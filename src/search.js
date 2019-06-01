@@ -12,10 +12,10 @@ class SearchBar extends React.Component{
     }
 
     searchType(){
-        if (this.props.search === "Pokemon-color"){
+        if (this.props.search === "pokemon-color"){
             return "Color"
         }else{
-            return this.props.search
+            return capitalize(this.props.search)
         }
     }
 
@@ -31,3 +31,10 @@ class SearchBar extends React.Component{
 }
 
 export default SearchBar
+
+function capitalize(string){
+    let word = string.split("")
+    word[0] = word[0].toUpperCase()
+    return word.join("")
+
+}

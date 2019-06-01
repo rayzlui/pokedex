@@ -12,7 +12,7 @@ class Options extends React.Component{
     
 
     generateOptions(){
-        var searchoptions = ["Pokemon", "Number", "Type", "Move", "Berry", "Region", "Ability", "Color"]
+        var searchoptions = ["pokemon", "number", "type", "move", "berry", "region", "ability", "color"]
         var options = searchoptions.map(search => {
             return this.makeOption(search)
         })
@@ -20,7 +20,7 @@ class Options extends React.Component{
     }
 
     makeOption(search){
-        return <option className = {search+"option"} value = {search} key = {search}>{search}</option>
+        return <option className = {search+"option"} value = {search} key = {search}>{capitalize(search)}</option>
     }
 
     render(){
@@ -35,4 +35,11 @@ class Options extends React.Component{
 }
 
 export default Options
+
+function capitalize(string){
+    let word = string.split("")
+    word[0] = word[0].toUpperCase()
+    return word.join("")
+
+}
 

@@ -58,16 +58,12 @@ class App extends React.Component{
   processData(){
     if (this.state.data){
       
-      if (this.state.data.count){
-      //this means that it's a list of objects we want to show a list that allows pagination
-        
+      if (this.state.data.count){       
         return <DisplayPokeList searchby = {this.state.searchby} searchRequest = {this.searchRequest} data = {this.state.data}/>
       }else{
-        //this means it returned one object, this we run pokedex on.
         return this.displayParameters(this.state.searchby)
       }
     }else{
-      //this means there's no data.
       return null 
     }
   }
@@ -100,8 +96,6 @@ class App extends React.Component{
   }
 
   async searchRequest(request = "https://pokeapi.co/api/v2/" + this.state.searchby+ "/" + this.state.search, type = this.state.searchby){
-
-    
     var response = await this.retreiveData(request)
     let previous = this.state.previous
     await previous.push({searchby: this.state.searchby, data: this.state.data})
@@ -126,15 +120,23 @@ class App extends React.Component{
     }
   }
 
+  dynamicCss(){
+    if (this.state.data=== null){
+      return 'data-container-null'
+    }else{
+      return "data-container"
+    }
+  }
+
 
   render(){
 
     return(
       
-      <div className = "pokecontainer">
-        <div className = "back-button">
+      <div className = "pokecontainer" >
+        <span className = "back-button">
           <button onClick = {this.backFunc.bind(this)}>Back</button><button onClick = {this.forwardFunc.bind(this)}>Forward</button>
-        </div>
+        </span>
         <div className = "header">
           <h1 className = "pokemon-title">Pokedex</h1>
         </div>
@@ -143,7 +145,7 @@ class App extends React.Component{
               <Options changeSearchBy = {this.changeSearchBy.bind(this)}/>
               <SearchBar updateInput = {this.updateInput.bind(this)} search = {this.state.searchby} value = {this.state.input} searchRequest = {this.searchRequest}/>
           </div>
-          <div className = "data-container">
+          <div className = {this.dynamicCss.bind(this)()}>
             {this.processData.bind(this)()}
           </div>
         </div>

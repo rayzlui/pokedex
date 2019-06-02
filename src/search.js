@@ -1,4 +1,5 @@
 import React from 'react'
+import {capitalize} from './display'
 
 class SearchBar extends React.Component{
    
@@ -21,20 +22,13 @@ class SearchBar extends React.Component{
 
     render(){
         return(
-            <div className = "search-bar">
+            <span className = "search-bar">
                 <label>Search by {this.searchType.bind(this)()}</label>
                 <input type = "text" value = {this.props.value} onChange = {this.updateInput.bind(this)}></input>
                 <input type = "submit" onClick = {this.searchRequest.bind(this)}></input>
-            </div>
+            </span>
         )
     }
 }
 
 export default SearchBar
-
-function capitalize(string){
-    let word = string.split("")
-    word[0] = word[0].toUpperCase()
-    return word.join("")
-
-}

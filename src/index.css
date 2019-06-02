@@ -5,9 +5,71 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+ 
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+
+
+.title-info {
+  display: inline-block;
+  margin: auto;
+  
+}
+
+div {
+  padding: 4px;
+  margin: auto;
+  width: 97%
+}
+
+.title-info h1{
+ 
+  margin: auto;
+  display: block;
+  float: left;
+}
+
+.title-info p{
+ 
+  float: left;
+}
+
+.pokecontainer {
+  background-color: rgb(78, 76, 199);
+  margin: auto;
+  width: 75%;
+  border: 3px solid black;
+  padding: 10px;
+}
+
+
+
+.type {
+  height: 90%;
+  display: block;
+  float: right;
+  width: 10%
+}
+
+.data-container-null{
+  height: 700px
+}
+
+.core-info{ 
+  border: 2px solid black;
+  width: 100%;
+  margin: auto;
+}
+
+.section{
+  margin: auto;
+  display: inline-block;
+  width: 12%;
+  border: 1px black solid ;
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {capitalize} from './display'
 class Options extends React.Component{
     constructor(props){
         super(props)
@@ -25,21 +25,16 @@ class Options extends React.Component{
 
     render(){
         return(
-            <div className = "search-options-container">
+            <span className = "search-options-container">
                 <select className = "dropdown-for-options" onChange = {this.changeSearchBy}>
                     {this.generateOptions.bind(this)()}
                 </select>
-            </div>
+            </span>
         )
     }
 }
 
 export default Options
 
-function capitalize(string){
-    let word = string.split("")
-    word[0] = word[0].toUpperCase()
-    return word.join("")
 
-}
 

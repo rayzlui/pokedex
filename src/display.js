@@ -15,21 +15,17 @@ function retreiveName(data){
 
 function processList(fulldata, searchFunc){
     //we want to click and have the api call for the pokemon and reset our data in the app so it displays the new info.
-    var display = []
+    
     var section = []
-    for (var i = 0; i < fulldata.length; i++){
-        var data = fulldata[i]
+    fulldata.forEach(data=>{
         
-        section.push(<p className = {data.name} key = {data.name} onClick = {()=>searchFunc(data.url)}>{capitalize(data.name)}</p>)
-        if ((i%20 === 0 && i !== 0)||i===fulldata.length-1){
-            display.push(<div className = {"section"}>{section}</div>)
-            section = []
-        }             
+        section.push(<p className = "list-data" key = {data.name} onClick = {()=>searchFunc(data.url)}>{capitalize(data.name)}</p>)
+       
             
         
-    }
+    })
     
-    return display
+    return section
 }
 
 class PokeDisplay extends React.Component{
@@ -47,7 +43,7 @@ class PokeDisplay extends React.Component{
     displayTypes(data, search){
         if (data){
             var types = (data.map(arr => {
-                return <p onClick = {()=>this.searchRequest(arr[search].url , search)}>{arr[search].name}</p>
+                return <p className = "list-data"  onClick = {()=>this.searchRequest(arr[search].url , search)}>{arr[search].name}</p>
             }))
             return types
         }
@@ -55,21 +51,17 @@ class PokeDisplay extends React.Component{
     
     processList(fulldata, searchFunc){
         //we want to click and have the api call for the pokemon and reset our data in the app so it displays the new info.
-        var display = []
+       
         var section = []
         for (var i = 0; i < fulldata.length; i++){
             var data = fulldata[i]
             
-            section.push(<p className = {data.move.name} key = {data.move.name} onClick = {()=>searchFunc(data.move.url, "move")}>{capitalize(data.move.name)}</p>)
-            if (i%15 === 0 && i !== 0){
-                display.push(<div className = {"section"}>{section}</div>)
-                section = []
-            }             
-                
+            section.push(<p className = "list-data"  key = {data.move.name} onClick = {()=>searchFunc(data.move.url, "move")}>{capitalize(data.move.name)}</p>)
+           
             
         }
         
-        return display
+        return section
     }
 
     displaySprites(data){
@@ -265,7 +257,7 @@ class TypeDisplay extends React.Component{
             return(
                 <div className = "type-pokemon-list">
                     <h1>{capitalize(this.props.data.name)} Pokemon</h1>
-                    {processList(this.cleanUp(this.props.data.pokemon), this.searchRequest.bind(this))}
+                    {processList(this.cleanUp.bind(this)(this.props.data.pokemon), this.searchRequest.bind(this))}
                 </div>
             )
         }else if (this.state.displayType === "move"){
@@ -311,7 +303,7 @@ class TypeDisplay extends React.Component{
             <div className = "type-container">
                 <div className = "title-info">
                     <h1 className = "type-name">{capitalize(this.props.data.name)}</h1>
-                    <p className = "type-id">#:{this.props.data.id}</p>
+                    <p className = "type-id">#{this.props.data.id}</p>
                 </div>
                 <div className = "core-info">
                     <div onClick = {this.viewPokemon.bind(this)}>Pokemon</div>

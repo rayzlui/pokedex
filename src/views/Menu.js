@@ -6,12 +6,16 @@ import styled from 'styled-components';
 
 export const ExpandingDiv = styled.div`
   height: ${props => {
-    return props.active ? '130px' : '30px';
+    return props.active ? '160px' : '30px';
   }};
+  text-align: center;
 `;
 export const MenuSection = styled.section`
   background-color: white;
-  width: 250px;
+  width: 40%;
+  border-radius: 3px;
+  margin-left: 30%;
+  height: 80%;
 `;
 
 export const ActiveButton = styled(Button)`
@@ -30,10 +34,18 @@ export function ToggleMenu(props) {
   let display;
   switch (view) {
     case 'pokedex':
-      display = <PokedexDisplay {...props} />;
+      display = (
+        <MenuSection>
+          <PokedexDisplay {...props} />
+        </MenuSection>
+      );
       break;
     default:
-      display = <SearchBar {...props} />;
+      display = (
+        <MenuSection>
+          <SearchBar {...props} />
+        </MenuSection>
+      );
       break;
   }
 
@@ -64,7 +76,7 @@ export function ToggleMenu(props) {
         Search Bar
       </ActiveButton>
 
-      <MenuSection>{display}</MenuSection>
+      {display}
     </ExpandingDiv>
   );
 }

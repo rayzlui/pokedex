@@ -28,8 +28,8 @@ const DisplayDiv = styled.div`
 const WrapperDiv = styled.div`
   text-align: left;
   background-image: linear-gradient(to bottom right, white, grey);
-  padding: 75px 0px;
   height: 610px;
+  width: 100%;
 `;
 
 const MenuDiv = styled.div`

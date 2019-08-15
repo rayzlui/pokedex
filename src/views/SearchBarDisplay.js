@@ -1,6 +1,3 @@
-//have root search view that handles which search menu should be used aka pokedex vs search bar for pokemon/type/ability etc.
-//put connecteed containers into the root search view so they already have their props, root search view only handles the logic to show which one.
-
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from './StyledComponents';

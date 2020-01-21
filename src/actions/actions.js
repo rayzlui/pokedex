@@ -6,13 +6,14 @@ import {
   CHANGE_DISPLAY_TO,
 } from './actionTypes';
 
-export function fetchData(info, type = 'pokemon') {
+export function fetchData(info, display, type) {
+  type = type === undefined ? display : type;
   return async function requestPokemon(dispatch) {
     dispatch(fetchDataStart());
     const response = await fetch(`https://pokeapi.co/api/v2/${type}/${info}`);
     if (response.status === 200) {
       const data = await response.json();
-      dispatch(changeDisplay(type));
+      dispatch(changeDisplay(display));
       dispatch(fetchDataSuccess(data));
     } else {
       const { status, statusText, url } = response;

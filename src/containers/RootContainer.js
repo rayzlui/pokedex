@@ -29,7 +29,7 @@ const DisplayDiv = styled.div`
 const WrapperDiv = styled.div`
   text-align: center;
   background-image: linear-gradient(to bottom right, white, red);
-  height: 96vh;
+  height: 100vh;
   width: 100vw;
 `;
 

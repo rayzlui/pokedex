@@ -97,8 +97,8 @@ ImageDisplay.propTypes = {
 
 export function PokemonDisplay(props) {
   const { data, displaying, requestData, isFetching } = props;
-  if (data === null && !isFetching){
-    requestData('charmander', 'pokemon')
+  if (data === null && !isFetching) {
+    requestData('charmander', 'pokemon');
     return null;
   }
   if (displaying !== 'pokemon' || data === null || isFetching) return null;

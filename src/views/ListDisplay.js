@@ -26,7 +26,7 @@ export function ListDisplay(props) {
       Next
     </Button>
   ) : null;
-    
+
   return (
     <>
       {results.map(info => {

@@ -47,7 +47,10 @@ export function PokedexPokemonList(props) {
       {pokemon_entries.map(pokemon => {
         const name = pokemon.pokemon_species.name;
         return (
-          <Button key={`${name} button`} onClick={() => requestData(name, 'pokemon')}>
+          <Button
+            key={`${name} button`}
+            onClick={() => requestData(name, 'pokemon')}
+          >
             {name}
           </Button>
         );

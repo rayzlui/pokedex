@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { LargeHeader } from './StyledComponents';
 
 export function BerryView(props) {
-  const { data, displaying } = props;
-  if (data === null || displaying !== 'berry' || data.count) return null;
+  const { data, displaying, isFetching } = props;
+  if (data === null || displaying !== 'berry' || isFetching) return null;
 
   const {
     name,
@@ -35,4 +35,5 @@ export function BerryView(props) {
 BerryView.propTypes = {
   data: PropTypes.object,
   displaying: PropTypes.string,
+  isFetching: PropTypes.bool,
 };

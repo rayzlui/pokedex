@@ -38,8 +38,8 @@ export function MultipleOptions(props) {
 }
 
 export function PokedexPokemonList(props) {
-  const { data, pokedex, requestData, displaying } = props;
-  if (displaying !== 'pokedex' || !data) return null;
+  const { data, pokedex, requestData } = props;
+  if (!data) return null;
   const { pokemon_entries } = data;
   return (
     <>
@@ -47,7 +47,7 @@ export function PokedexPokemonList(props) {
       {pokemon_entries.map(pokemon => {
         const name = pokemon.pokemon_species.name;
         return (
-          <Button key={`${name} button`} onClick={() => requestData(name)}>
+          <Button key={`${name} button`} onClick={() => requestData(name, 'pokemon')}>
             {name}
           </Button>
         );
@@ -64,12 +64,7 @@ PokedexPokemonList.propTypes = {
 };
 
 export function PokedexDisplay(props) {
-  const { data, changePokedex, seedPokedex, isFetching } = props;
-
-  if (data === null && isFetching === false) {
-    seedPokedex();
-    return null;
-  }
+  const { changePokedex, displaying } = props;
 
   const regions = [
     'kanto',
@@ -83,7 +78,11 @@ export function PokedexDisplay(props) {
   ];
   return (
     <PokedexDiv>
-      <Select onChange={event => changePokedex(event.target.value)}>
+      <Select
+        onChange={event =>
+          changePokedex(event.target.value, displaying, 'pokedex')
+        }
+      >
         <MultipleOptions options={regions} />
       </Select>
     </PokedexDiv>
@@ -94,5 +93,5 @@ PokedexDisplay.propTypes = {
   isFetching: PropTypes.bool,
   data: PropTypes.object,
   changePokedex: PropTypes.func,
-  seedPokedex: PropTypes.func,
+  displaying: PropTypes.string,
 };

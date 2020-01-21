@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Button, LargeHeader } from './StyledComponents';
 
 export function MoveDisplay(props) {
-  const { data, displaying, requestData } = props;
-  if (data === null || displaying !== 'move' || data.count) return null;
+  const { data, displaying, requestData, isFetching } = props;
+  if (data === null || displaying !== 'move' || isFetching) return null;
   const { accuracy, effect_entries, name, power, pp, type } = data;
   const accuracyDisplay = accuracy ? accuracy : 'Does not apply';
   const effectDisplay =
@@ -33,4 +33,5 @@ MoveDisplay.propTypes = {
   data: PropTypes.object,
   displaying: PropTypes.string,
   requestData: PropTypes.func,
+  isFetching: PropTypes.bool,
 };

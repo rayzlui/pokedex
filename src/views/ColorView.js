@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Button, LargeHeader } from './StyledComponents';
 
 export function ColorView(props) {
-  const { data, displaying, requestData } = props;
-  if (data === null || displaying !== 'pokemon-color' || data.count)
+  const { data, displaying, requestData, isFetching } = props;
+  if (data === null || displaying !== 'pokemon-color' || isFetching)
     return null;
   const { name, pokemon_species } = data;
 
@@ -34,4 +34,5 @@ ColorView.propTypes = {
   data: PropTypes.object,
   displaying: PropTypes.string,
   requestData: PropTypes.func,
+  isFetching: PropTypes.bool,
 };

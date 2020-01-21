@@ -4,8 +4,8 @@ import { CreateButtonsFromInfo } from './PokemonDisplay';
 import { LargeHeader } from './StyledComponents';
 
 export function AbilityDisplay(props) {
-  const { data, displaying, requestData } = props;
-  if (!data || displaying !== 'ability' || data.count) return null;
+  const { data, displaying, requestData, isFetching } = props;
+  if (!data || displaying !== 'ability' || isFetching) return null;
 
   const { name, pokemon, effect_entries } = data;
   const firstEffect = effect_entries[0].effect;
@@ -28,4 +28,5 @@ AbilityDisplay.propTypes = {
   data: PropTypes.object,
   displaying: PropTypes.string,
   requestData: PropTypes.func,
+  isFetching: PropTypes.bool,
 };

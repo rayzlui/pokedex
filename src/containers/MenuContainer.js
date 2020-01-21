@@ -13,17 +13,13 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changePokedex: input => {
+    changePokedex: (input, display, type) => {
       dispatch(changePokedex(input));
-      dispatch(fetchData(input, 'pokedex'));
+      dispatch(fetchData(input, display, type));
     },
 
     requestData: (input, parameter) => {
       dispatch(fetchData(input, parameter));
-    },
-
-    seedPokedex: () => {
-      dispatch(fetchData('kanto', 'pokedex'));
     },
   };
 }

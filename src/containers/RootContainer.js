@@ -48,8 +48,10 @@ export function RootContainer() {
           <AbilityContainer />
           <BerryContainer />
           <ColorContainer />
+          <ErrorContainer />
         </DisplayDiv>
         <DisplayDiv>
+          <FetchingContainer />
           <MenuContainer />
           <ListContainer />
           <PokedexContainer />

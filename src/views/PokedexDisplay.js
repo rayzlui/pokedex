@@ -27,10 +27,14 @@ export const PokedexDiv = styled.div`
 `;
 
 export function MultipleOptions(props) {
-  const { options } = props;
+  const { pokedex, options } = props;
   return options.map(option => {
+    let selected = false;
+    if (pokedex === option) {
+      selected = true;
+    }
     return (
-      <option key={option} value={option}>
+      <option key={option} value={option} selected={selected}>
         {option.toUpperCase()}
       </option>
     );
@@ -67,7 +71,7 @@ PokedexPokemonList.propTypes = {
 };
 
 export function PokedexDisplay(props) {
-  const { changePokedex, displaying } = props;
+  const { pokedex, changePokedex } = props;
 
   const regions = [
     'kanto',
@@ -81,12 +85,8 @@ export function PokedexDisplay(props) {
   ];
   return (
     <PokedexDiv>
-      <Select
-        onChange={event =>
-          changePokedex(event.target.value, displaying, 'pokedex')
-        }
-      >
-        <MultipleOptions options={regions} />
+      <Select onChange={event => changePokedex(event.target.value)}>
+        <MultipleOptions options={regions} pokedex={pokedex} />
       </Select>
     </PokedexDiv>
   );
@@ -94,7 +94,7 @@ export function PokedexDisplay(props) {
 
 PokedexDisplay.propTypes = {
   isFetching: PropTypes.bool,
-  data: PropTypes.object,
+  pokedex: PropTypes.string,
   changePokedex: PropTypes.func,
   displaying: PropTypes.string,
 };

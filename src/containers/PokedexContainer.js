@@ -5,8 +5,7 @@ import { fetchData } from '../actions/actions';
 function mapStateToProps(state) {
   return {
     pokedex: state.pokedex,
-    data: state.requestPokemon.listData,
-    displaying: state.displaying,
+    data: state.requestPokedex.listData,
   };
 }
 

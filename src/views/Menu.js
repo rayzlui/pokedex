@@ -3,6 +3,8 @@ import { SearchBar } from './SearchBarDisplay';
 import React, { useState } from 'react';
 import { Button } from './StyledComponents';
 import styled from 'styled-components';
+import { FetchingContainer } from '../containers/FetchingContainer';
+import { PropTypes } from 'prop-types';
 
 export const MenuSection = styled.section`
   background-color: white;
@@ -26,7 +28,12 @@ export const Nav = styled.section`
 `;
 
 export function ToggleMenu(props) {
+  const { isFetching } = props;
+
   const [view, changeView] = useState('pokedex');
+  if (isFetching) {
+    return <FetchingContainer />;
+  }
 
   let display;
   switch (view) {
@@ -69,3 +76,7 @@ export function ToggleMenu(props) {
     </Nav>
   );
 }
+
+ToggleMenu.propTypes = {
+  isFetching: PropTypes.bool,
+};

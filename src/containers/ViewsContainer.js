@@ -5,6 +5,7 @@ function mapStateToProps(state) {
   return {
     data: state.requestPokemon.data,
     displaying: state.displaying,
+    isFetching: state.requestPokemon.isFetching,
   };
 }
 

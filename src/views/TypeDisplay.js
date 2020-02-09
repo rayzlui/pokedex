@@ -4,8 +4,8 @@ import { CreateButtonsFromInfo } from './PokemonDisplay';
 import { LargeHeader } from './StyledComponents';
 
 export function TypeDisplay(props) {
-  const { data, displaying, requestData } = props;
-  if (data === null || displaying !== 'type' || data.count) return null;
+  const { data, displaying, requestData, isFetching } = props;
+  if (data === null || displaying !== 'type' || isFetching) return null;
   const { name, pokemon, damage_relations, moves } = data;
   const {
     double_damage_from,
@@ -75,4 +75,5 @@ TypeDisplay.propTypes = {
   data: PropTypes.object,
   displaying: PropTypes.string,
   requestData: PropTypes.func,
+  isFetching: PropTypes.bool,
 };

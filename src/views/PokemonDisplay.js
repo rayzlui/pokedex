@@ -96,8 +96,13 @@ ImageDisplay.propTypes = {
 };
 
 export function PokemonDisplay(props) {
-  const { data, displaying, requestData } = props;
-  if (displaying !== 'pokemon' || data === null || data.count) return null;
+  const { data, displaying, requestData, isFetching } = props;
+  if (data === null && !isFetching) {
+    requestData('charmander', 'pokemon');
+    return null;
+  }
+  if (displaying !== 'pokemon' || data === null || isFetching) return null;
+
   const { name, types, moves, abilities, sprites } = data;
   const type = types[0].type.name;
   return (
@@ -140,4 +145,5 @@ PokemonDisplay.propTypes = {
   data: PropTypes.object,
   displaying: PropTypes.string,
   requestData: PropTypes.func,
+  isFetching: PropTypes.bool,
 };

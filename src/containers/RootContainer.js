@@ -13,53 +13,49 @@ import { ColorContainer } from './ColorContainer';
 import styled from 'styled-components';
 
 const DisplayDiv = styled.div`
-  width: 450px;
-  height: 550px;
-  display: block;
+  width: 46%;
+  height: 80%;
+  top: 12%;
+  position: relative;
+  display: inline-block;
   border-radius: 5px;
-  border: 2px solid black;
   box-shadow: 3px 3px 5px black, 4px 4px 5px grey, 3px 3px 5px grey,
     4px 4px 5px grey;
-  margin: 0 auto;
+  margin: 2%;
   overflow: scroll;
   background-color: white;
 `;
 
 const WrapperDiv = styled.div`
-  text-align: left;
-  background-image: linear-gradient(to bottom right, white, grey);
-  height: 610px;
-  width: 100%;
-`;
-
-const MenuDiv = styled.div`
-  box-shadow: 1px 1px 1px grey;
-  border-radius: 3px;
-  width: 100%;
-  margin: 0;
-  background-color: white;
-  display: inline-block;
-  background-color: silver;
+  text-align: center;
+  background-image: linear-gradient(to bottom right, white, red);
+  height: 100vh;
+  width: 100vw;
 `;
 
 export function RootContainer() {
   return (
     <>
-      <MenuDiv>
-        <MenuContainer />
-      </MenuDiv>
       <WrapperDiv>
+        <header>
+          <h1>Pokedex</h1>
+        </header>
         <DisplayDiv>
-          <ErrorContainer />
-          <PokedexContainer />
           <FetchingContainer />
-          <ListContainer />
           <PokemonContainer />
           <MoveContainer />
           <TypeContainer />
           <AbilityContainer />
           <BerryContainer />
           <ColorContainer />
+          <ErrorContainer />
+        </DisplayDiv>
+        <DisplayDiv>
+          <FetchingContainer />
+          <MenuContainer />
+          <ListContainer />
+          <PokedexContainer />
+          <ErrorContainer />
         </DisplayDiv>
       </WrapperDiv>
     </>

@@ -27,10 +27,14 @@ export const PokedexDiv = styled.div`
 `;
 
 export function MultipleOptions(props) {
-  const { options } = props;
+  const { pokedex, options } = props;
   return options.map(option => {
+    let selected = false;
+    if (pokedex === option) {
+      selected = true;
+    }
     return (
-      <option key={option} value={option}>
+      <option key={option} value={option} selected={selected}>
         {option.toUpperCase()}
       </option>
     );
@@ -38,8 +42,8 @@ export function MultipleOptions(props) {
 }
 
 export function PokedexPokemonList(props) {
-  const { data, pokedex, requestData, displaying } = props;
-  if (displaying !== 'pokedex' || !data) return null;
+  const { data, pokedex, requestData } = props;
+  if (!data) return null;
   const { pokemon_entries } = data;
   return (
     <>
@@ -47,7 +51,10 @@ export function PokedexPokemonList(props) {
       {pokemon_entries.map(pokemon => {
         const name = pokemon.pokemon_species.name;
         return (
-          <Button key={`${name} button`} onClick={() => requestData(name)}>
+          <Button
+            key={`${name} button`}
+            onClick={() => requestData(name, 'pokemon')}
+          >
             {name}
           </Button>
         );
@@ -64,12 +71,7 @@ PokedexPokemonList.propTypes = {
 };
 
 export function PokedexDisplay(props) {
-  const { data, changePokedex, seedPokedex, isFetching } = props;
-
-  if (data === null && isFetching === false) {
-    seedPokedex();
-    return null;
-  }
+  const { pokedex, changePokedex } = props;
 
   const regions = [
     'kanto',
@@ -84,7 +86,7 @@ export function PokedexDisplay(props) {
   return (
     <PokedexDiv>
       <Select onChange={event => changePokedex(event.target.value)}>
-        <MultipleOptions options={regions} />
+        <MultipleOptions options={regions} pokedex={pokedex} />
       </Select>
     </PokedexDiv>
   );
@@ -92,7 +94,7 @@ export function PokedexDisplay(props) {
 
 PokedexDisplay.propTypes = {
   isFetching: PropTypes.bool,
-  data: PropTypes.object,
+  pokedex: PropTypes.string,
   changePokedex: PropTypes.func,
-  seedPokedex: PropTypes.func,
+  displaying: PropTypes.string,
 };

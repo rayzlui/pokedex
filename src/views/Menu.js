@@ -3,19 +3,13 @@ import { SearchBar } from './SearchBarDisplay';
 import React, { useState } from 'react';
 import { Button } from './StyledComponents';
 import styled from 'styled-components';
+import { FetchingContainer } from '../containers/FetchingContainer';
+import { PropTypes } from 'prop-types';
 
-export const ExpandingDiv = styled.div`
-  height: ${props => {
-    return props.active ? '160px' : '30px';
-  }};
-  text-align: center;
-`;
 export const MenuSection = styled.section`
   background-color: white;
-  width: 40%;
-  border-radius: 3px;
-  margin-left: 30%;
-  height: 80%;
+  text-align: center;
+  display: block;
 `;
 
 export const ActiveButton = styled(Button)`
@@ -27,9 +21,19 @@ export const ActiveButton = styled(Button)`
   }}
 `;
 
+export const Nav = styled.section`
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+`;
+
 export function ToggleMenu(props) {
-  const [menu, expandMenu] = useState(true);
+  const { isFetching } = props;
+
   const [view, changeView] = useState('pokedex');
+  if (isFetching) {
+    return <FetchingContainer />;
+  }
 
   let display;
   switch (view) {
@@ -49,16 +53,8 @@ export function ToggleMenu(props) {
       break;
   }
 
-  if (menu === false) {
-    display = null;
-  }
-
   return (
-    <ExpandingDiv
-      onMouseEnter={() => expandMenu(true)}
-      onMouseLeave={() => expandMenu(false)}
-      active={menu}
-    >
+    <Nav>
       <ActiveButton
         active={view === 'search'}
         onClick={() => {
@@ -77,6 +73,10 @@ export function ToggleMenu(props) {
       </ActiveButton>
 
       {display}
-    </ExpandingDiv>
+    </Nav>
   );
 }
+
+ToggleMenu.propTypes = {
+  isFetching: PropTypes.bool,
+};
